@@ -1,0 +1,37 @@
+{
+  "name": "toolkit",
+  "version": "0.0.1",
+  "description": "javascript tool library",
+  "browser": "dist/toolkit.js",
+  "main": "dist/toolkit.back.js",
+  "scripts": {
+    "build": "webpack",
+    "build:http": "webpack --config script/http.js",
+    "build:node": "webpack dist/build.js",
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SilenceLog/toolkit.git"
+  },
+  "keywords": [
+    "tool",
+    "util"
+  ],
+  "author": "SilenceLog",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SilenceLog/toolkit/issues"
+  },
+  "homepage": "https://github.com/SilenceLog/toolkit#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "webpack": "^3.10.0"
+  }
+}
