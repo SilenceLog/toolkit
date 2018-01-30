@@ -12,18 +12,23 @@
 
 <head>
     <title>click-outside</title>
-    <script src="./dist/click-outside.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="../../dist/click-outside.js"></script>
+    <div id="app">
+      <div v-click-outside="">344</div>
+    </div>
 </head>
   
 <body>
     <script>
-      Vue.directive('click-outside', {
-        // 当被绑定的元素插入到 DOM 中时……
-        inserted: function (el) {
-          // 聚焦元素
-          el.focus()
-        }
+      var app = new Vue({
+        el: '#app',
+        meth
       })
+
+      console.log('Vue', Vue)
+      console.log('ClickOutside', Vue.ClickOutside)
+      // Vue.directive('click-outside', ClickOutside)
     </script>
 </body>
 </html>

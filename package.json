@@ -7,6 +7,7 @@
   "scripts": {
     "build": "webpack",
     "build:http": "webpack --config script/http.js",
+    "build:test": "webpack --config script/test.js",
     "build:node": "webpack dist/build.js",
     "test": ""
   },
