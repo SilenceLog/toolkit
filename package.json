@@ -8,16 +8,27 @@
     "build": "webpack",
     "build:http": "webpack --config script/http.js",
     "build:test": "webpack --config script/test.js",
+    "build:util": "webpack --config script/util.js",
     "build:node": "webpack dist/build.js",
-    "test": ""
+    "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SilenceLog/toolkit.git"
   },
   "keywords": [
+    "toolkit",
     "tool",
     "util"
+  ],
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
   ],
   "author": "SilenceLog",
   "license": "ISC",
@@ -28,11 +39,14 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
+    "babel-jest": "^22.2.2",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
+    "jest": "^22.2.1",
+    "regenerator-runtime": "^0.11.1",
     "webpack": "^3.10.0"
   }
 }

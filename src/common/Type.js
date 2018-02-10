@@ -9,6 +9,8 @@ function getType (v) {
   }
 })
 
+isArray = Array.isArray || isArray
+
 function isNaN (v) {
   return Number.isNaN ? Number.isNaN(v) : v !== v
 }

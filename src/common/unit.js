@@ -45,4 +45,8 @@ _ = {
       return fn
     }
   }
+
+  eq (v1, v2) {
+    return v1 === v2 || (v1 !== v1 && v2 !== v2)
+  }
 }

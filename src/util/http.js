@@ -3,7 +3,9 @@
 export default class Http {
   constructor () {
     this.ajaxConfig = {
-
+      timeout: -1,
+      dataFilter () {
+      }
     }
     this.jsonpConfig = {
 
@@ -13,6 +15,8 @@ export default class Http {
     options = options || {}
     options.type = (options.type || 'GET').toUpperCase()
     options.dataType = (options.dataType || 'JSON').toUpperCase()
+    // options.dataFilter
+    // timeout
     let params = null
     let xhr = null
     if (window.XMLHttpRequest) {
@@ -21,6 +25,7 @@ export default class Http {
       //IE6及其以下版本浏览器
       xhr = new ActiveXObject('Microsoft.XMLHTTP');
     }
+    xhr.responseType = options.dataType
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
         var status = xhr.status
@@ -51,7 +56,7 @@ export default class Http {
     for (let key in data) {
       arr.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
     }
-    arr.push(('v=' + Math.random()).replace('.', ''))
+    // arr.push(('v=' + Math.random()).replace('.', ''))
     return arr.join('&')
   }
 }
