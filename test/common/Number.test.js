@@ -53,6 +53,7 @@ test('Number isEven', () => {
 test('Number checkBoundary', () => {
   let a = Math.round(Math.random() * 1000)
   expect(checkBoundary(Number.MAX_SAFE_INTEGER + 1)).toBe(true)
+  expect(checkBoundary(Number.MIN_SAFE_INTEGER - 1)).toBe(true)
   expect(checkBoundary(a)).toBe(false)
 });
 
