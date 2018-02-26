@@ -70,12 +70,12 @@ function isEven (v) {
 
 /**
  * [校验数字是否越界]
- * @param  {[type]} num [description]
+ * @param  {[type]} v [description]
  * @return {[type]}     [description]
  */
-function checkBoundary (num) {
-  if (num > Number.MAX_SAFE_INTEGER || num < Number.MIN_SAFE_INTEGER) {
-    // console.warn(`${num} is beyond boundary when transfer to integer, the results may not be accurate`);
+function checkBoundary (v) {
+  if (v > Number.MAX_SAFE_INTEGER || v < Number.MIN_SAFE_INTEGER) {
+    // console.warn(`${v} is beyond boundary when transfer to integer, the results may not be accurate`);
     return true
   }
   return false
@@ -83,13 +83,13 @@ function checkBoundary (num) {
 
 /**
  * [四舍五入]
- * @param  {[type]} num   [description]
+ * @param  {[type]} v   [description]
  * @param  {[type]} ratio [description]
  * @return {[type]}       [description]
  */
-// function round (num, ratio) {
+// function round (v, ratio) {
 //   const base = Math.pow(10, ratio);
-//   return divide(Math.round(times(num, base)), base);
+//   return divide(Math.round(times(v, base)), base);
 // }
 
 /**
@@ -116,12 +116,12 @@ function thousands (v, n) {
 
 /**
  * [矫正浮点数误差]
- * @param  {Number} num       [需要矫正的数]
+ * @param  {Number} v       [需要矫正的数]
  * @param  {Number} precision [精度]
  * @return {[type]}           [description]
  */
-function strip(num, precision = 12) {
-  return +parseFloat(num.toPrecision(precision))
+function strip(v, precision = 2) {
+  return +parseFloat(v.toPrecision(precision))
 }
 
-export { mul, div, add, sub, isEven, checkBoundary, toFixed}
+export { mul, div, add, sub, isEven, checkBoundary, toFixed, strip}

@@ -55,17 +55,17 @@ class Monitor {
             // 如果浏览器有堆栈信息，直接使用
             monitorError.msg = error.stack.toString();
         } else if (arguments.callee) {
-            let ext = [];
+            let ext = []
             let fn = arguments.callee.caller;
-            let floor = 3;  
+            let floor = 3
             while (fn && (--floor>0)) {
                 ext.push(fn.toString());
                 if (fn  === fn.caller) {
                     break;
                 }
-                fn = fn.caller;
+                fn = fn.caller
             }
-            ext = ext.join(',');
+            ext = ext.join(',')
             monitorError.msg = error.stack.toString();
         }
         console.log('MonitorError', monitorError)
@@ -94,7 +94,7 @@ class Monitor {
         if (this.readyState === 4) {
           // && this.ajaxUrl !== self.config.url
           if (this.status !== 200 && this.status !== 304) {
-            let mx = xhrList.find((v, i) => {
+            let mx = xhrList.findIndex((v, i) => {
               return v.xhr === xhr
             })
             if (_data && mx) {
@@ -127,11 +127,11 @@ class MonitorError {
     let str = ''
     for (let k in self) {
         if (self[k] === null || self[k] === undefined) {
-            self[k] = 'null'; 
+            self[k] = 'null'
         }
-        str += '&'+ k + '=' + self[k].toString();
+        str += '&'+ k + '=' + self[k].toString()
     }
-    return str = str.replace('&', '').replace(/\n|\s/g, '');
+    return str = str.replace('&', '').replace(/\n|\s/g, '')
   }
 }
 
@@ -150,11 +150,11 @@ class MonitorXhr {
     for (let k in self) {
         if (k === 'xhr') continue;
         if (self[k] === null || self[k] === undefined) {
-            self[k] = 'null'; 
+            self[k] = 'null'
         }
-        str += '&'+ k + '=' + self[k].toString();
+        str += '&'+ k + '=' + self[k].toString()
     }
-    return str = str.replace('&', '').replace(/\n|\s/g, '');
+    return str = str.replace('&', '').replace(/\n|\s/g, '')
   }
 }
 

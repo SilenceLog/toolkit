@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Queue</title>
+    <script src="../../dist/common.js"></script>
+</head>
+
+<body>
+    <script>
+    const async = (x) => {
+        return (next) => {
+            setTimeout(() => {
+                console.log(x);
+                next();
+            }, 1000);
+        }
+    }
+
+    const q = new Queue();
+    const funs = '123456'.split('').map(x => async(x));
+    q.add(...funs).run();
+
+    setTimeout(() => {
+        console.log('暂停了')
+        q.stop();
+    }, 3000)
+
+
+    setTimeout(() => {
+        console.log('继续')
+        q.goOn();
+    }, 5000)
+
+    const q2 = new Queue();
+    const funs2 = '222'.split('').map(x => async(x));
+    q2.add(...funs2).concurrent();
+    </script>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-import { mul, div, add, sub, isEven, checkBoundary, toFixed} from '../../src/common/Number.js'
+import { mul, div, add, sub, isEven, checkBoundary, toFixed, strip} from '../../src/common/Number.js'
 
 test('Number mul', () => {
   let a = Math.round(Math.random() * 100)
@@ -18,8 +18,8 @@ test('Number div', () => {
   let bt = b / 100
   let c = (a / b)
   expect(div(8.2, 0.4)).toBe(20.5)
-  expect(div(at, bt)).toBe(c)
   expect(div(at, bt)).toBeCloseTo(at / bt)
+  expect(div(at, bt)).toBe(c)
 });
 
 test('Number add', () => {

@@ -54,13 +54,13 @@ function fm (date) {
   var str = ''
   if (timeDifference < defaults.minute) {
     str = '刚刚'
-  }else if (timeDifference < defaults.hour) {
+  } else if (timeDifference < defaults.hour) {
     var min = parseInt(timeDifference / defaults.minute)
     str = min + '分钟前'
-  }else if (timeDifference < defaults.day) {
+  } else if (timeDifference < defaults.day) {
     var h = parseInt(timeDifference / defaults.hour)
     str = h + '小时前 '
-  }else if (timeDifference < defaults.day * 3) {
+  } else if (timeDifference < defaults.day * 3) {
     var d = parseInt(timeDifference / defaults.day)
     var htime = format('HH:mm:ss')
     if (d===1) {
