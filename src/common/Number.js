@@ -124,4 +124,46 @@ function strip(v, precision = 2) {
   return +parseFloat(v.toPrecision(precision))
 }
 
-export { mul, div, add, sub, isEven, checkBoundary, toFixed, strip}
+/**
+ * TODO 有问题
+ * [upDigit 数字大写]
+ * @param  {[type]} v [description]
+ * @return {[type]}   [description]
+ */
+function capital (v) {
+  const fraction = ['角', '分', '厘']
+  const digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖']
+  const unit = [['元', '万', '亿'], ['', '拾', '佰', '仟']]
+  v = Math.abs(v)
+  let s = ''
+  for (let i = 0; i < fraction.length; i++) {
+    s += (digit[Math.floor(v * 10 * Math.pow(10, i)) % 10] + fraction[i]).replace(/零./, '')
+  }
+  s = s || '整'
+  v = Math.floor(v)
+  for (let i = 0; i < unit[0].length && v > 0; i++) {
+      let p = ''
+      for (let j = 0; j < unit[1].length && v > 0; j++) {
+        p = digit[v % 10] + unit[1][j] + p
+        v = Math.floor(v / 10)
+      }
+      s = p+ unit[0][i] + s
+  }
+  return s.replace(/(零.)*零元/, '元').replace(/(零.)+/g, '零').replace(/^整$/, '零元整')
+}
+
+/**
+ * [randomNumber 随机返回指定范围内的整数]
+ * @param  {Number} n1 [最小值,只有一个参数时该参数为最大值，最小值为0]
+ * @param  {Number} n2 [最大值]
+ * @return {[type]}    [description]
+ */
+function randomNumber (n1=0, n2=255) {
+  if (arguments.length===1) {
+    return Math.round(Math.random() * n1)
+  } else {
+    return Math.round(n1 + Math.random() * (n2 - n1))
+  }  
+}
+
+export { mul, div, add, sub, isEven, checkBoundary, toFixed, strip, capital, randomNumber}

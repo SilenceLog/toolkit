@@ -1,5 +1,5 @@
 // const isNode = Object.prototype.toString.call(typeof process !== 'undefined' ? process : 0) === '[object process]'
-
+import { formatParams } from '../common/Object.js'
 export default class Http {
   constructor () {
     this.ajaxConfig = {
@@ -52,12 +52,7 @@ export default class Http {
 
   }
   formatParams (data) {
-    let arr = []
-    for (let key in data) {
-      arr.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    }
-    // arr.push(('v=' + Math.random()).replace('.', ''))
-    return arr.join('&')
+    return formatParams(data)
   }
 }
 window && (window.Http = Http)

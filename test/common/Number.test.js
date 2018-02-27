@@ -1,4 +1,4 @@
-import { mul, div, add, sub, isEven, checkBoundary, toFixed, strip} from '../../src/common/Number.js'
+import { mul, div, add, sub, isEven, checkBoundary, toFixed, strip, capital} from '../../src/common/Number.js'
 
 test('Number mul', () => {
   let a = Math.round(Math.random() * 100)
@@ -57,4 +57,6 @@ test('Number checkBoundary', () => {
   expect(checkBoundary(a)).toBe(false)
 });
 
+test('Number capital', () => {
+});
 

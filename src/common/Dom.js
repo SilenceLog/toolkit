@@ -1,3 +1,68 @@
+import { isDOMElement } from './Type.js'
+
+class Dom () {
+  constructor (el) {
+    this.el = isDOMElement(el) ? el : selector(el)
+    this.els = []
+  }
+  selector (el) {
+    return document.getElementById(el)
+  }
+  show () {
+    this.el.style.display = ''
+  }
+  hide () {
+    this.el.style.display = 'none'
+  }
+  html (txt) {
+    if (arguments.length === 0) {
+      return this.el.innerHTML
+    } else {
+      this.el.innerHTML = txt
+    }
+  }
+  css (key, value) {
+    if (value !== undefined) {
+      this.el.style[key] = value
+    } else if (typeof key === 'object') {
+      for (const k in key) {
+        this.el.style[k] = key[k]
+      }
+    } else {
+      return this.el.style[key]
+    }
+  }
+  hasClass (classStr) {
+    const arr = this.el.className.split(/\s+/)
+    return arr.indexOf(classStr) > -1
+  }
+  addClass (classStr) {
+    if (!this.hasClass(classStr)) this.el.className += ' ' + classStr
+  }
+  removeClass (classStr) {
+    if (this.hasClass(classStr)) {
+      const reg = new RegExp('(\\s|^)' + classStr + '(\\s|$)');
+      this.el.className = this.el.className.replace(reg, '')
+    }
+  }
+  toggleClass (classStr) {
+    if (this.hasClass(classStr)) {
+      this.removeClass(classStr)
+    } else {
+      this.addClass(classStr)
+    }
+  }
+  children () {
+    
+  }
+  paretn () {
+
+  }
+  siblings () {
+
+  }
+} 
+
 var EventUtil = {
   // 添加事件监听
   add: function (element, type, callback) {

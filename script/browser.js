@@ -6,11 +6,10 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    monitor: './src/util/monitor.js',
-    http: './src/util/http.js'
+    storage: './src/browser/storage.js'
   },
   output: {
-    filename: 'monitor.js',
+    filename: 'browser.js',
     path: path.resolve(__dirname, '../dist')
   },
   module: {

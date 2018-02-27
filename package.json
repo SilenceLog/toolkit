@@ -6,7 +6,7 @@
   "main": "dist/toolkit.back.js",
   "scripts": {
     "build": "webpack",
-    "build:http": "webpack --config script/http.js",
+    "build:browser": "webpack --config script/browser.js",
     "build:common": "webpack --config script/common.js",
     "build:test": "webpack --config script/test.js",
     "build:util": "webpack --config script/util.js",

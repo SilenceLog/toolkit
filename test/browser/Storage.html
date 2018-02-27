@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Storage</title>
+    <script src="../../dist/browser.js"></script>
+</head>
+
+<body>
+    <script>
+    var a = new YStorage({
+        driver: YStorage.LOCALSTORAGE
+    })
+    var c = new YStorage({
+        driver: YStorage.SESSIONSTORAGE
+    })
+    document.cookie = 'name=1'
+    document.cookie = 'name2=2'
+    var b = new YStorage({
+        driver: YStorage.COOKIE
+    })
+    setTimeout(function () {
+        a.setItem('name', '1')
+        a.setItem('name2', '2')
+        console.log(a.hasItem('name'))
+        a.removeItem('name')
+        console.log(a.hasItem('name'))
+        a.setItem('name3', '3')
+        console.log(a.keys())
+        console.log(a.db)
+    }, 0)
+    setTimeout(function () {
+        c.setItem('name', '1')
+        c.setItem('name2', '2')
+        console.log(c.hasItem('name'))
+        c.removeItem('name')
+        console.log(c.hasItem('name'))
+        c.setItem('name3', '3')
+        console.log(c.keys())
+        console.log(c.db)
+    }, 2000)
+    setTimeout(function () {
+        console.log(b.hasItem('name'))
+        b.removeItem('name')
+        console.log(b.hasItem('name'))
+        b.setItem('name', '3')
+        console.log(b.hasItem('name'))
+        b.setItem('name4', '3')
+        console.log(b.keys())
+        console.log(b.db)
+        console.log(document.cookie)
+    }, 5000)
+    setTimeout(function () {
+        a.clear()
+        b.clear()
+        c.clear()
+    }, 7000)
+    setTimeout(function () {
+        console.log(a.db)
+        console.log(b.db)
+        console.log(c.db)
+    }, 8000)
+    </script>
+</body>
+
+</html>
