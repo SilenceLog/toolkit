@@ -122,8 +122,10 @@ class Storage {
     if (this.config.driver === Storage.COOKIE) {
       let keyArr = getCookieKeys(this.db)
       for (let j = 0; j < keyArr.length; j++) {
-        if (i === j) key = decodeURIComponent(keyArr[i])
-        break;
+        if (i === j) {
+          key = decodeURIComponent(keyArr[i])
+          break
+        }
       }
     } else {
       key = this.db.key(i)
