@@ -1,109 +1,122 @@
-// write toArray()
-function toArray (list, start) {
-  start = start || 0
-  var i = list.length - start
-  var ret = new Array(i)
-  while (i--) {
-    ret[i] = list[i + start]
-  }
-  return ret
-}
+import { isArray, isFunction } from './Type.js'
+import { toArray } from './Array.js'
 
-// 定义观察者
-var Observer = function () {
-  this._events = Object.create(null)
-}
 /**
- * [$on 发布消息]
- * @param  {[type]}   event [事件别名]
- * @param  {Function} fn    [事件回调]
+ * 观察者
  */
-Observer.prototype.$on = function (event, fn) {
-  var this$1 = this
-
-  var self = this
-  if (Array.isArray(event)) {
-    for (var i = 0, l = event.length; i < l; i++) {
-      this$1.$on(event[i], fn)
-    }
+class Observer {
+  constructor () {
+    this._events = Object.create(null)
   }
-  else {
-    (self._events[event] || (self._events[event] = [])).push(fn)
-  }
-  return self
-}
-/**
- * [$once 仅发布一次消息]
- * @param  {[type]}   event [事件别名]
- * @param  {Function} fn    [事件回调]
- */
-Observer.prototype.$once = function (event, fn) {
-  var self = this
-  function on() {
-    self.$off(event, on)
-    fn.apply(self, arguments)
-  }
-  // on.fn = fn;
-  self.$on(event, on)
-  return self
-}
-/**
- * [$off 取消发布]
- * @param  {[type]}   event [事件别名]
- * @param  {Function} fn    [事件回调]
- */
-Observer.prototype.$off = function (event, fn) {
-  var this$1 = this
-
-  var self = this
-  // clear all
-  if (!arguments.length) {
-    this._events = Object.create(null);
-    return self
-  }
-  // clear array of events
-  if (Array.isArray(event)) {
-    for (var i$1 = 0, l = event.length; i$1 < l; i$1++) {
-      this$1.$off(event[i$1], fn)
+  /**
+   * [$on 订阅]
+   * @param  {(String|Array)}   event [事件别名]
+   * @param  {Function|Array} fn    [事件回调]
+   * @return {Object}         [this]
+   */
+  $on (event, fn) {
+    let self = this
+    if (isArray(event)) {
+      for (let i = 0; i < event.length; i++) {
+        self.$on(event[i], fn)
+      }
+    } else if (isArray(fn)) {
+      for (let i = 0; i < fn.length; i++) {
+        self.$on(event, fn[i])
+      }
+    } else {
+      (self._events[event] || (self._events[event] = [])).push(fn)
     }
     return self
   }
-  // special event
-  var cbs = self._events[event]
-  if (!cbs) {
-    return self;
-  }
-  if (arguments.length === 1) {
-    this._events[event] = null;
-    return self;
-  }
-  // special handler
-  var cb;
-  var i = cbs.length;
-  while (i--) {
-    cb = cbs[i];
-    if (cb === fn || cb.fn === fn) {
-      cbs.splice(i, 1);
-      break;
+  /**
+   * [$off 取消订阅]
+   * @param  {(String|Array)}   event [description]
+   * @param  {(Function|Array)} fn    [需要取消订阅的方法]
+   * @return {Object}         [this]
+   */
+  $off (event, fn) {
+    let self = this
+
+    // 没有event清除所有事件
+    if (!arguments.length) {
+      self._events = Object.create(null);
+      return self
     }
+    // event是数组的话循环遍历
+    if (isArray(event)) {
+      for (let i = 0; i < event.length; i++) {
+        self.$off(event[i], fn)
+      }
+      return self
+    }
+    // 如果fn参数没有的话清空所有订阅
+    if (fn === undefined) {
+      this._events[event] = null
+      return self
+    }
+    // 如果fn是方法数组的话
+    if (isArray(fn)) {
+      for (let i = 0; i < fn.length; i++) {
+        self.$off(event, fn[i])
+      }
+      return self
+    }
+    // 第二个参数不是方法的时候
+    if (!isFunction(fn)) {
+      throw new TypeError('is not function')
+      return self
+    }
+    let fns = self._events[event]
+    // 不存在事件集时
+    if (!fns) {
+      return self
+    }
+    // 取消指定方法
+    let cb
+    let i = fns.length
+    while (i--) {
+      cb = fns[i]
+      if (cb === fn || cb.fn === fn) {
+        fns.splice(i, 1)
+        break
+      }
+    }
+    return self
   }
-  return self;
+  /**
+   * [$once 一次性订阅]
+   * @param  {(String|Array)}   event [description]
+   * @param  {Function} fn    [description]
+   * @return {Object}         [this]
+   */
+  $once (event, fn) {
+    const self = this
+    function on () {
+      self.$off(event, on)
+      fn.apply(self, arguments)
+    }
+    self.$on(event, on)
+    return self
+  }
+  /**
+   * [$emit 触发订阅]
+   * @param  {(String|Array)} event [description]
+   * @return {Object}       [this]
+   */
+  $emit (event) {
+    let self = this
+    let fns = self._events[event]
+    if (fns) {
+      fns = fns.concat([])
+      const args = toArray(arguments, 1)
+      const l = fns.length >>> 0
+      for (let i = 0; i < l; i++) {
+        fns[i].apply(self, args)
+      }
+    }
+    return self
+  }
 }
 
-/**
- * [$emit 订阅触发]
- * @param  {[type]} event [事件别名]
- */
-Observer.prototype.$emit = function (event) {
-  var self = this;
-  var cbs = this._events[event];
-
-  if (cbs) {
-    cbs = cbs.length > 1 ? toArray(cbs) : cbs;
-    var args = toArray(arguments, 1);
-    for (var i = 0, l = cbs.length; i < l; i++) {
-      cbs[i].apply(self, args);
-    }
-  }
-  return self;
-};
+export default Observer

@@ -43,24 +43,30 @@ class Storage {
         break;
     }
   }
-  setItem (k, v, end, path, domain, secure) {
+  /**
+   * [setItem 设置值]
+   * @param {String} k      [键]
+   * @param {*} v      [值]
+   * @param {Object} config [{end: 结束时间,domain: 域名,path: 路径: secure: 安全}]
+   */
+  setItem (k, v, config) {
     if (!k) return
     if (this.config.driver === Storage.COOKIE) {
       if (/^(?:expires|max\-age|path|domain|secure)$/i.test(k)) return
-      domain = domain || this.config.domain
-      path = path || this.config.path
-      secure = secure || this.config.secure
+      domain = config.domain || this.config.domain
+      path = config.path || this.config.path
+      secure = config.secure || this.config.secure
       let expires = ''
-      if (end) {
-        switch (end.constructor) {
+      if (config.end) {
+        switch (config.end.constructor) {
           case Number:
-            expires = end === Infinity ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT" : "; max-age=" + end;
+            expires = config.end === Infinity ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT" : "; max-age=" + end;
             break;
           case String:
-            expires = "; expires=" + end;
+            expires = "; expires=" + config.end;
             break;
           case Date:
-            expires = "; expires=" + end.toUTCString();
+            expires = "; expires=" + config.end.toUTCString();
             break;
         }
       }
@@ -93,10 +99,10 @@ class Storage {
     }
     return value
   }
-  removeItem (k, path, domain) {
+  removeItem (k, config) {
     if (!k || !this.hasItem(k)) return
-    domain = domain || this.config.domain
-    path = path || this.config.path
+    domain = config.domain || this.config.domain
+    path = config.path || this.config.path
     if (this.config.driver === Storage.COOKIE) {
       this.db = encodeURIComponent(k) + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT' + ( domain ? '; domain=' + domain : '') + ( path ? '; path=' + path : '')
     } else {
@@ -151,6 +157,6 @@ function getCookieKeys (c) {
   return c.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, '').split(/\s*(?:\=[^;]*)?;\s*/)
 }
 
-window && (window.YStorage = Storage)
+window && (window.DStorage = Storage)
 
 export default Storage

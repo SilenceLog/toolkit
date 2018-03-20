@@ -19,7 +19,7 @@ test('Number div', () => {
   let c = (a / b)
   expect(div(8.2, 0.4)).toBe(20.5)
   expect(div(at, bt)).toBeCloseTo(at / bt)
-  expect(div(at, bt)).toBe(c)
+  expect(div(at, bt)).toBeCloseTo(c)
 });
 
 test('Number add', () => {

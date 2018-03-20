@@ -6,11 +6,12 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    queue: './src/common/Queue.js'
+    queue: './src/common/Queue.js',
+    prototype: './src/common/prototype/index.js'
   },
   output: {
-    filename: 'common.js',
-    path: path.resolve(__dirname, '../dist')
+    filename: '[name].js',
+    path: path.resolve(__dirname, '../dist/common')
   },
   module: {
     rules: [

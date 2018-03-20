@@ -57,3 +57,6 @@ typings/
 # dotenv environment variables file
 .env
 
+# 忽略jsdoc
+jsdoc
+

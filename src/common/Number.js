@@ -147,22 +147,22 @@ function capital (v) {
         p = digit[v % 10] + unit[1][j] + p
         v = Math.floor(v / 10)
       }
-      s = p+ unit[0][i] + s
+      s = p + unit[0][i] + s
   }
   return s.replace(/(零.)*零元/, '元').replace(/(零.)+/g, '零').replace(/^整$/, '零元整')
 }
 
 /**
  * [randomNumber 随机返回指定范围内的整数]
- * @param  {Number} n1 [最小值,只有一个参数时该参数为最大值，最小值为0]
- * @param  {Number} n2 [最大值]
- * @return {[type]}    [description]
+ * @param  {Number} min [最小值,只有一个参数时该参数为最大值，最小值为0]
+ * @param  {Number} max [最大值]
+ * @return {Number}    [指定范围内的整数]
  */
-function randomNumber (n1=0, n2=255) {
+function randomNumber (min=0, max=255) {
   if (arguments.length===1) {
-    return Math.round(Math.random() * n1)
+    return Math.round(Math.random() * min)
   } else {
-    return Math.round(n1 + Math.random() * (n2 - n1))
+    return Math.round(min + Math.random() * (max - min))
   }  
 }
 

@@ -54,4 +54,8 @@ function isDOMElement (o) {
   return !!(o && typeof window !== 'undefined' && (o === window || o.nodeType))
 }
 
-export {getType, isUndefined, isNull, isObject, isArray, isString, isNumber, isBoolean, isRegExp, isFunction, isNaN, isDOMElement}
+function isPromise (v) {
+  return isObject(v) && isFunction(v.then)
+}
+
+export {getType, isUndefined, isNull, isObject, isArray, isString, isNumber, isBoolean, isRegExp, isFunction, isNaN, isDOMElement, isPromise}

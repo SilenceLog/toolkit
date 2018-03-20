@@ -10,7 +10,7 @@ _ = {
     for (let key in n) {
       if (!o[key]) {
         obj[key] = n[key]
-        continue;
+        continue
       }
       if (/string|number|boolean/.test(typeof n[key])) {
         if (n[key] !== o[key]) obj[key] = n[key]
@@ -19,9 +19,9 @@ _ = {
         switch (type) {
           case '[object Array]':
             if (n[key].length !== o[key].length) obj[key] = n[key]
-            break;
+            break
           default:
-            break;
+            break
         }
       }
     }

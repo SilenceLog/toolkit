@@ -108,4 +108,11 @@ function noCopy (p, c) {
   return c
 }
 
+function cover (p, c) {
+  p = p || {}
+  for (let key in p) {
+    if (c[key]) p[key] = c[key]
+  }
+}
+
 export { extend, object, deepObject, extendCopy, deepCopy}
