@@ -1,7 +1,7 @@
 /**
  * [capitalizeEveryWord 首字母转大写]
- * @param  {[type]} str [description]
- * @return {[type]}     [description]
+ * @param  {String} str [description]
+ * @return {String}     [description]
  */
 function capitalizeEveryWord (str) {
   return str.replace(/\b[a-z]/g, char => char.toUpperCase())
@@ -9,8 +9,8 @@ function capitalizeEveryWord (str) {
 
 /**
  * [randomNumber 生成随机字符串]
- * @param  {[type]} count [description]
- * @return {[type]}       [description]
+ * @param  {Number} count [description]
+ * @return {String}       [description]
  */
 function randomNumber(count){
   return Math.random().toString(count).substring(2)
@@ -18,9 +18,9 @@ function randomNumber(count){
 
 /**
  * [trim 去空格]
- * @param  {[type]} str  [description]
- * @param  {[type]} type [1-所有空格  2-前后空格  3-前空格 4-后空格（默认1）]
- * @return {[type]}      [description]
+ * @param  {String} str  [description]
+ * @param  {Number} type [1-所有空格  2-前后空格  3-前空格 4-后空格（默认1）]
+ * @return {String}      [description]
  */
 function trim (str, type=1) {
   switch (type){

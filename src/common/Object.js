@@ -1,14 +1,15 @@
 /**
  * [formatParams 对象转化成url参数字符串格式]
  * @param  {[type]} o [description]
+ * @param  {[type]} j [description]
  * @return {[type]}      [description]
  */
-function formatParams (o) {
+function formatParams (o, j='&') {
   let arr = []
   for (let key in o) {
     arr.push(encodeURIComponent(key) + '=' + encodeURIComponent(JSON.stringify(o[key])))
   }
-  return arr.join('&')
+  return arr.join(j)
 }
 
 /**

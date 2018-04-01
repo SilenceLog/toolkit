@@ -75,7 +75,7 @@ function isEven (v) {
  */
 function checkBoundary (v) {
   if (v > Number.MAX_SAFE_INTEGER || v < Number.MIN_SAFE_INTEGER) {
-    // console.warn(`${v} is beyond boundary when transfer to integer, the results may not be accurate`);
+    console.warn(`${v} is beyond boundary when transfer to integer, the results may not be accurate`);
     return true
   }
   return false

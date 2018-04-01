@@ -114,7 +114,16 @@ function isDOMElement (o) {
  * @return {Boolean}   [description]
  */
 function isPromise (v) {
-  return isObject(v) && isFunction(v.then)
+  return getType(v) === 'Promise'.toLowerCase() || (isObject(v) && isFunction(v.then))
+}
+
+/**
+ * [isMongooseQuery 是否mongoose对象]
+ * @param  {*}  v [description]
+ * @return {Boolean}   [description]
+ */
+function isMongooseQuery (v) {
+  return v !== null && typeof v === 'object' && typeof v.exec === 'function';
 }
 
 /**
@@ -135,4 +144,4 @@ function isJSON (str) {
   console.log('It is not a string!')
 }
 
-export {getType, isUndefined, isNull, isObject, isArray, isString, isNumber, isBoolean, isRegExp, isFunction, isNaN, isDOMElement, isPromise, isJSON}
+export {getType, isUndefined, isNull, isObject, isArray, isString, isNumber, isBoolean, isRegExp, isFunction, isNaN, isDOMElement, isPromise, isMongooseQuery, isJSON}
