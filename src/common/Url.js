@@ -2,18 +2,33 @@
 /**
  * [getQueryString 获取参数值]
  * @param  {String} name [参数名]
- * @param  {String} url [要截取的字符串]
+ * @param  {Object} param [{url:要截取的字符串, reg:结果匹配的正则}]
  * @return {String}      [参数值]
  */
-function getQueryString (name, url) {
+function getQueryString (name, param) {
   let reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
   let result = ''
-  if (!url) {
+  let url = ''
+  if (!param.url) {
     url = window.location.search.substr(1)
   } else {
-    url = url.replace(/.*\?/, '')
+    url = param.url.replace(/.*\?/, '')
   }
   result = url.match(reg)
-  if (result != null) return decodeURIComponent(result[2])
+  if (result !== null) {
+    let value = decodeURIComponent(result[2])
+    if (param.reg) {
+      let vreg = new RegExp(param.reg)
+      let val = value.match(vreg)
+      if (val !== null) return val[0]
+      return null
+    }
+    return value
+  }
   return null
 }
+
+getQueryString('action', {
+  url: 'http://buytest.wokelink.com/sign-up.html?sharer_id=5ac3500808bce2523247a59d&catalog_id=5ab8b2e007eeb21cfe5532f8&last_cm_user=593769579981d7cac34888d5&action=collect#',
+  reg: '[^#]*'
+})

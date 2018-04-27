@@ -14,7 +14,7 @@ function newDate (s) {
  * @return {[type]}     [description]
  */
 function format (d, fmt) {
-  if (d instanceof !== Date) {
+  if (!d instanceof Date) {
     throw new Error('is not Date')
   }
   var o = {

@@ -31,3 +31,72 @@ function trim (str, type=1) {
     default:return str
   }
 }
+
+/**
+ * [getExtension 获取文件后缀名]
+ * @param  {String} str [description]
+ * @return {String}     [description]
+ */
+function getExtension (str) {
+  let v = str.match(/\.[^\.]*$/g)
+  return v && v.length ? v[0] : ''
+}
+
+/**
+ * [bitOperation 二进制字符串位运算]
+ * @param  {String} v1        [description]
+ * @param  {String} v2        [description]
+ * @param  {String} operators [description]
+ * @return {String}           [description]
+ */
+function bitOperation(v1, v2, operators) {
+  let len = Math.max(v1.length, v2.length)
+  let arr1 = v1.split('').reverse()
+  let arr2 = v2.split('').reverse()
+  function and (n1, n2) {
+    return n1 + '' + n2 === '11' ? '1' : '0'
+  }
+  let res = []
+  let fn = null
+  switch (operators) {
+    case '&':
+      fn = and
+      break
+    default:
+      // statements_def
+      break
+  }
+  if (!fn) {
+    return
+  }
+  for (let i = 0; i < len; i++) {
+    res.unshift(fn(arr1[i], arr2[i]))
+  }
+  return res.join('')
+}
+
+/**
+ * [isEmail 是否邮箱]
+ * @param  {String}  str [description]
+ * @return {Boolean}     [description]
+ */
+function isEmail(str) {
+  if (!str) return false
+  if (str.length > 254) return false
+  const reg = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-?\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/
+  if (!reg.test(str)) return false
+  const parts = str.split('@')
+  if(parts[0].length > 64) return false
+  const domainParts = parts[1].split('.')
+  if(domainParts.some(function(part) {return part.length > 63})) return false
+  return true
+}
+
+export {
+  capitalizeEveryWord,
+  randomNumber,
+  trim,
+  getExtension,
+  isEmail,
+  bitOperation
+}

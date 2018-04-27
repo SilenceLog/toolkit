@@ -166,4 +166,6 @@ function randomNumber (min=0, max=255) {
   }  
 }
 
+// TODO 字符串二进制位运算与或
+
 export { mul, div, add, sub, isEven, checkBoundary, toFixed, strip, capital, randomNumber}
