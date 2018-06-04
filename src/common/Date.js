@@ -8,6 +8,41 @@ function newDate (s) {
 }
 
 /**
+ * [getDays 获取公历对应月份的天数]
+ * @param  {Number} y [年份]
+ * @param  {Number} m [月份]
+ * @return {Number}   [天数]
+ */
+function getDays (y, m) {
+  // 默认月份天数
+  const SolarMonthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  if (m === 1) {
+    return isLeapYear(y) ? 29 : 28;
+  } else {
+    return SolarMonthDays[m];
+  }
+}
+
+/**
+ * [isLeapYear 是否闰年]
+ * @param  {Number}  y [年份]
+ * @return {Boolean}   [description]
+ */
+function isLeapYear (y) {
+  return (y % 4 === 0) && (y % 100 !== 0) || (y % 400 === 0)
+}
+
+/**
+ * [getChineseHours 小时转时辰]
+ * @param  {Number} h [description]
+ * @return {String}      [description]
+ */
+function getChineseHours (h) {
+  const GroundBranches = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥']
+  return GroundBranches[Math.ceil(h / 2) % 12]
+}
+
+/**
  * [时间格式化]
  * @param  {[type]} d   [description]
  * @param  {[type]} fmt [description]
@@ -74,4 +109,8 @@ function fm (date) {
     str = format('yyyy-MM-dd HH:mm:ss')
   }
   return str
+}
+
+export default {
+  format
 }

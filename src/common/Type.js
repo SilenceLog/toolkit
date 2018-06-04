@@ -15,7 +15,7 @@ function getType (v) {
  * @return {Boolean}   [description]
  */
 function isUndefined (v) {
-  return getType(v) === 'Undefined'.toLowerCase()
+  return getType(v) === 'undefined'.toLowerCase()
 }
 
 /**
@@ -24,7 +24,7 @@ function isUndefined (v) {
  * @return {Boolean}   [description]
  */
 function isNull (v) {
-  return getType(v) === 'Null'.toLowerCase()
+  return getType(v) === 'null'.toLowerCase()
 }
 
 /**
@@ -33,7 +33,7 @@ function isNull (v) {
  * @return {Boolean}   [description]
  */
 function isObject (v) {
-  return getType(v) === 'Object'.toLowerCase()
+  return getType(v) === 'object'.toLowerCase()
 }
 
 /**
@@ -42,7 +42,7 @@ function isObject (v) {
  * @return {Boolean}   [description]
  */
 function isArray (v) {
-  return Array.isArray ? Array.isArray(v) : getType(v) === 'Array'.toLowerCase()
+  return Array.isArray ? Array.isArray(v) : getType(v) === 'array'.toLowerCase()
 }
 
 /**
@@ -51,7 +51,7 @@ function isArray (v) {
  * @return {Boolean}   [description]
  */
 function isString (v) {
-  return getType(v) === 'String'.toLowerCase()
+  return getType(v) === 'string'.toLowerCase()
 }
 
 /**
@@ -60,7 +60,7 @@ function isString (v) {
  * @return {Boolean}   [description]
  */
 function isNumber (v) {
-  return getType(v) === 'Number'.toLowerCase()
+  return getType(v) === 'number'.toLowerCase()
 }
 
 /**
@@ -69,7 +69,7 @@ function isNumber (v) {
  * @return {Boolean}   [description]
  */
 function isBoolean (v) {
-  return getType(v) === 'Boolean'.toLowerCase()
+  return getType(v) === 'boolean'.toLowerCase()
 }
 
 /**
@@ -78,7 +78,7 @@ function isBoolean (v) {
  * @return {Boolean}   [description]
  */
 function isRegExp (v) {
-  return getType(v) === 'RegExp'.toLowerCase()
+  return getType(v) === 'regexp'.toLowerCase()
 }
 
 /**
@@ -87,7 +87,7 @@ function isRegExp (v) {
  * @return {Boolean}   [description]
  */
 function isFunction (v) {
-  return getType(v) === 'Function'.toLowerCase()
+  return getType(v) === 'function'.toLowerCase()
 }
 
 /**
@@ -114,7 +114,7 @@ function isDOMElement (o) {
  * @return {Boolean}   [description]
  */
 function isPromise (v) {
-  return getType(v) === 'Promise'.toLowerCase() || (isObject(v) && isFunction(v.then))
+  return getType(v) === 'promise'.toLowerCase() || (isObject(v) && isFunction(v.then))
 }
 
 /**
@@ -124,6 +124,15 @@ function isPromise (v) {
  */
 function isMongooseQuery (v) {
   return v !== null && typeof v === 'object' && typeof v.exec === 'function';
+}
+
+/**
+ * [isObjectLike 是否是对象]
+ * @param  {*}  v [description]
+ * @return {Boolean}   [description]
+ */
+function isObjectLike (v) {
+  return typeof v === 'object' && v !== null
 }
 
 /**
@@ -144,4 +153,13 @@ function isJSON (str) {
   console.log('It is not a string!')
 }
 
-export {getType, isUndefined, isNull, isObject, isArray, isString, isNumber, isBoolean, isRegExp, isFunction, isNaN, isDOMElement, isPromise, isMongooseQuery, isJSON}
+/**
+ * [isDate 判断是否是时间]
+ * @param  {*}  v [description]
+ * @return {Boolean}   [description]
+ */
+function isDate (v) {
+  return isObjectLike(v) && getType(v) === 'date'.toLowerCase()
+}
+
+export {getType, isUndefined, isNull, isObject, isArray, isString, isNumber, isBoolean, isRegExp, isFunction, isNaN, isDOMElement, isPromise, isMongooseQuery, isObjectLike, isJSON, isDate}

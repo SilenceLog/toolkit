@@ -7,6 +7,7 @@
 function formatParams (o, j='&') {
   let arr = []
   for (let key in o) {
+    if (!o[key] && o[key] !== 0) continue
     arr.push(encodeURIComponent(key) + '=' + encodeURIComponent(JSON.stringify(o[key])))
   }
   return arr.join(j)
@@ -28,6 +29,21 @@ function eqValue (o1, o2) {
     if(o1[key] !== o2[key]) return false
   }
   return true
+}
+
+/**
+ * [joinKey description]
+ * @param  {[type]} o [description]
+ * @param  {String} j [description]
+ * @return {[type]}   [description]
+ */
+function joinKey (o, j=',') {
+  // Object.keys(o).join(',')
+  let arr = []
+  for (let key in o) {
+    arr.push(key)
+  }
+  return arr.join(j)
 }
 
 export { formatParams }

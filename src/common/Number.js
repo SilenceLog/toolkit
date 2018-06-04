@@ -104,9 +104,9 @@ function toFixed (v, decimal) {
 
 /**
  * [千分位格式化]
- * @param  {[type]} v [description]
- * @param  {[type]} n [description]
- * @return {[type]}   [description]
+ * @param  {Number|String} v [description]
+ * @param  {Number} n [保留小数点后几位]
+ * @return {String}   [description]
  */
 function thousands (v, n) {
   let s = ('' + v).split('.')

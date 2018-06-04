@@ -119,4 +119,16 @@ class Observer {
   }
 }
 
+var o = new Observer()
+
+o.$on('chi', (a) => {
+  console.log('a', a)
+})
+
+o.$on('xiao', (a) => {
+  console.log('a', a)
+})
+
+o.$emit('chi', 123)
+
 export default Observer
