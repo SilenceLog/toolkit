@@ -16,31 +16,31 @@ class Storage {
     switch (this.config.driver) {
       case Storage.LOCALSTORAGE:
         db = window.localStorage
-        break;
+        break
       case Storage.SESSIONSTORAGE:
-        db = window.sessionStorage || ( window.UserDataStorage && new UserDataStorage() )|| new cookieStorage()
-        break;
+        db = window.sessionStorage || (window.UserDataStorage && new UserDataStorage()) || new cookieStorage()
+        break
       case Storage.COOKIE:
         db = document.cookie || window.cookie
-        break;
+        break
       default:
         // statements_def
-        break;
+        break
     }
     return db
   }
   set db (v) {
     switch (this.config.driver) {
       case Storage.LOCALSTORAGE:
-        break;
+        break
       case Storage.SESSIONSTORAGE:
-        break;
+        break
       case Storage.COOKIE:
         (document.cookie && (document.cookie = v)) || (window.cookie && (window.cookie = v))
-        break;
+        break
       default:
         // statements_def
-        break;
+        break
     }
   }
   /**
@@ -60,14 +60,14 @@ class Storage {
       if (config.end) {
         switch (config.end.constructor) {
           case Number:
-            expires = config.end === Infinity ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT" : "; max-age=" + end;
-            break;
+            expires = config.end === Infinity ? '; expires=Fri, 31 Dec 9999 23:59:59 GMT' : '; max-age=' + end
+            break
           case String:
-            expires = "; expires=" + config.end;
-            break;
+            expires = '; expires=' + config.end
+            break
           case Date:
-            expires = "; expires=" + config.end.toUTCString();
-            break;
+            expires = '; expires=' + config.end.toUTCString()
+            break
         }
       }
       this.db = encodeURIComponent(k) + '=' + encodeURIComponent(v) + expires + (domain ? '; domain=' + domain : '') + (path ? '; path=' + path : '') + (secure ? '; secure' : '')
@@ -87,15 +87,15 @@ class Storage {
     switch (this.config.driver) {
       case Storage.LOCALSTORAGE:
         value = JSON.parse(this.db.getItem(k))
-        break;
+        break
       case Storage.SESSIONSTORAGE:
         value = JSON.parse(this.db.getItem(k))
-        break;
+        break
       case Storage.COOKIE:
-        value = decodeURIComponent(this.db.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(k).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null
-        break;
+        value = decodeURIComponent(this.db.replace(new RegExp('(?:(?:^|.*;)\\s*' + encodeURIComponent(k).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1')) || null
+        break
       default:
-        break;
+        break
     }
     return value
   }
@@ -104,7 +104,7 @@ class Storage {
     domain = config.domain || this.config.domain
     path = config.path || this.config.path
     if (this.config.driver === Storage.COOKIE) {
-      this.db = encodeURIComponent(k) + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT' + ( domain ? '; domain=' + domain : '') + ( path ? '; path=' + path : '')
+      this.db = encodeURIComponent(k) + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT' + (domain ? '; domain=' + domain : '') + (path ? '; path=' + path : '')
     } else {
       this.db.removeItem(k)
     }

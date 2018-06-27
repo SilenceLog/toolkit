@@ -22,7 +22,7 @@ function unique (a) {
  * @return {Array}     [description]
  */
 function upset (a) {
-  return a.sort(function(){ return Math.random() - 0.5});
+  return a.sort(function () { return Math.random() - 0.5 })
 }
 
 /**
@@ -31,7 +31,7 @@ function upset (a) {
  * @return {Object}     [description]
  */
 function randomOne (a) {
-  return a[Math.floor(Math.random() * (a.length >>> 0))];
+  return a[Math.floor(Math.random() * (a.length >>> 0))]
 }
 
 /**
@@ -58,7 +58,7 @@ function reduce (a, fn, sum) {
   while (i < len) {
     if (i in o) {
       value = fn(value, o[i], i, o)
-    }     
+    }
     i++
   }
   return value
@@ -95,7 +95,7 @@ function object (a, fn) {
  * @param  {Boolean} eq [description]
  * @return {Array}     [description]
  */
-function selected (a, k, eq=true) {
+function selected (a, k, eq = true) {
   let arr = []
   if (!k) return arr
   for (let i = 0; i < (a.length >>> 0); i++) {

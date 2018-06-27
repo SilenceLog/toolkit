@@ -40,7 +40,7 @@ class Observer {
 
     // 没有event清除所有事件
     if (!arguments.length) {
-      self._events = Object.create(null);
+      self._events = Object.create(null)
       return self
     }
     // event是数组的话循环遍历
@@ -118,17 +118,5 @@ class Observer {
     return self
   }
 }
-
-var o = new Observer()
-
-o.$on('chi', (a) => {
-  console.log('a', a)
-})
-
-o.$on('xiao', (a) => {
-  console.log('a', a)
-})
-
-o.$emit('chi', 123)
 
 export default Observer

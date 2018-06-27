@@ -4,8 +4,8 @@
  * @param  {[type]} Parent [description]
  * @return {[type]}        [description]
  */
-function extend(Child, Parent) {
-  var F = function() {}
+function extend (Child, Parent) {
+  var F = function () {}
   F.prototype = Parent.prototype
   Child.prototype = new F()
   Child.prototype.constructor = Child
@@ -17,9 +17,9 @@ function extend(Child, Parent) {
  * @param  {[type]} o [description]
  * @return {[type]}   [description]
  */
-function object(Parent, Child) {
+function object (Parent, Child) {
   Child = Child || {}
-  function F() {}
+  function F () {}
   F.prototype = Parent
   var obj = new F()
   for (var k in Child) {
@@ -34,7 +34,7 @@ function object(Parent, Child) {
  * @param  {[type]} c [description]
  * @return {[type]}   [description]
  */
-function deepObject(p, c) {
+function deepObject (p, c) {
   c = c || {}
   for (var i in p) {
     if (typeof p[i] === 'object') {
@@ -43,17 +43,16 @@ function deepObject(p, c) {
     } else {
       c[i] = p[i]
     }
-  }　　　　
+  }
   return c
 }
-
 
 /**
  * 浅拷贝
  * @param  {[type]} p [description]
  * @return {[type]}   [description]
  */
-function extendCopy(p) {
+function extendCopy (p) {
   var c = {}
   for (var i in p) {
     c[i] = p[i]
@@ -66,7 +65,7 @@ function extendCopy(p) {
  * [deepCopy 深度对象克隆]
  * @param  {[type]} Obj [参数对象]
  */
-function deepCopy(Obj) {
+function deepCopy (Obj) {
   // 定义buf进行缓存
   var buf // 创建一个空数组
   // if Array
@@ -104,7 +103,7 @@ function noCopy (p, c) {
         c[i] = p[i]
       }
     }
-  }　　　　
+  }
   return c
 }
 

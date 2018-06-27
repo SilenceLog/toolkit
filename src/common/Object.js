@@ -4,7 +4,7 @@
  * @param  {[type]} j [description]
  * @return {[type]}      [description]
  */
-function formatParams (o, j='&') {
+function formatParams (o, j = '&') {
   let arr = []
   for (let key in o) {
     if (!o[key] && o[key] !== 0) continue
@@ -26,7 +26,7 @@ function eqValue (o1, o2) {
     return false
   }
   for (let key in o1) {
-    if(o1[key] !== o2[key]) return false
+    if (o1[key] !== o2[key]) return false
   }
   return true
 }
@@ -37,7 +37,7 @@ function eqValue (o1, o2) {
  * @param  {String} j [description]
  * @return {[type]}   [description]
  */
-function joinKey (o, j=',') {
+function joinKey (o, j = ',') {
   // Object.keys(o).join(',')
   let arr = []
   for (let key in o) {

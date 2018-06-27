@@ -12,7 +12,7 @@ function capitalizeEveryWord (str) {
  * @param  {Number} count [description]
  * @return {String}       [description]
  */
-function randomNumber(count){
+function randomNumber (count) {
   return Math.random().toString(count).substring(2)
 }
 
@@ -22,8 +22,8 @@ function randomNumber(count){
  * @param  {Number} type [1-所有空格  2-前后空格  3-前空格 4-后空格（默认1）]
  * @return {String}      [description]
  */
-function trim (str, type=1) {
-  switch (type){
+function trim (str, type = 1) {
+  switch (type) {
     case 1:return str.replace(/\s+/g, '')
     case 2:return str.replace(/(^\s*)|(\s*$)/g, '')
     case 3:return str.replace(/(^\s*)/g, '')
@@ -49,7 +49,7 @@ function getExtension (str) {
  * @param  {String} operators [description]
  * @return {String}           [description]
  */
-function bitOperation(v1, v2, operators) {
+function bitOperation (v1, v2, operators) {
   let len = Math.max(v1.length, v2.length)
   let arr1 = v1.split('').reverse()
   let arr2 = v2.split('').reverse()
@@ -80,15 +80,15 @@ function bitOperation(v1, v2, operators) {
  * @param  {String}  str [description]
  * @return {Boolean}     [description]
  */
-function isEmail(str) {
+function isEmail (str) {
   if (!str) return false
   if (str.length > 254) return false
   const reg = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-?\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/
   if (!reg.test(str)) return false
   const parts = str.split('@')
-  if(parts[0].length > 64) return false
+  if (parts[0].length > 64) return false
   const domainParts = parts[1].split('.')
-  if(domainParts.some(function(part) {return part.length > 63})) return false
+  if (domainParts.some(function (part) { return part.length > 63 })) return false
   return true
 }
 

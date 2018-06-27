@@ -9,14 +9,14 @@ class Color {
   }
   format (fmt) {
     var o = {
-      '\\$R': this.R, //红色(十六进制)
-      '\\$G': this.G, //绿色(十六进制)
-      '\\$B': this.B, //蓝色(十六进制)
-      '\\$A': this.A, //透明度
-      '\\$r': this.r, //红色(十进制)
-      '\\$g': this.g, //绿色(十进制)
-      '\\$b': this.b, //蓝色(十进制)
-      '\\$a': this.a //透明度 (parseInt(this.A, 16) * 100/255/100).toFixed(2) 
+      '\\$R': this.R, // 红色(十六进制)
+      '\\$G': this.G, // 绿色(十六进制)
+      '\\$B': this.B, // 蓝色(十六进制)
+      '\\$A': this.A, // 透明度
+      '\\$r': this.r, // 红色(十进制)
+      '\\$g': this.g, // 绿色(十进制)
+      '\\$b': this.b, // 蓝色(十进制)
+      '\\$a': this.a // 透明度 (parseInt(this.A, 16) * 100/255/100).toFixed(2)
     }
     for (var k in o) {
       if (new RegExp('(' + k + ')').test(fmt)) fmt = fmt.replace(RegExp.$1, (o[k]))
@@ -34,7 +34,7 @@ class Color {
       if (min > v || v > max || typeof v !== 'number') {
         throw new Error('value error')
       }
-    } catch(e) {
+    } catch (e) {
       console.log(e)
     }
     return v

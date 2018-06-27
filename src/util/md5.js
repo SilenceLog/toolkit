@@ -1,5 +1,4 @@
 export default function (string) {
-
   function RotateLeft (lValue, iShiftBits) {
     return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits))
   }
@@ -25,39 +24,43 @@ export default function (string) {
     }
   }
 
-  function F(x, y, z) {
-    return (x & y) | ((~x) & z) }
+  function F (x, y, z) {
+    return (x & y) | ((~x) & z)
+  }
 
-  function G(x, y, z) {
-    return (x & z) | (y & (~z)) }
+  function G (x, y, z) {
+    return (x & z) | (y & (~z))
+  }
 
-  function H(x, y, z) {
-    return (x ^ y ^ z) }
+  function H (x, y, z) {
+    return (x ^ y ^ z)
+  }
 
-  function I(x, y, z) {
-    return (y ^ (x | (~z))) }
+  function I (x, y, z) {
+    return (y ^ (x | (~z)))
+  }
 
-  function FF(a, b, c, d, x, s, ac) {
+  function FF (a, b, c, d, x, s, ac) {
     a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac))
     return AddUnsigned(RotateLeft(a, s), b)
   }
 
-  function GG(a, b, c, d, x, s, ac) {
+  function GG (a, b, c, d, x, s, ac) {
     a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac))
     return AddUnsigned(RotateLeft(a, s), b)
   }
 
-  function HH(a, b, c, d, x, s, ac) {
+  function HH (a, b, c, d, x, s, ac) {
     a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac))
     return AddUnsigned(RotateLeft(a, s), b)
   }
 
-  function II(a, b, c, d, x, s, ac) {
+  function II (a, b, c, d, x, s, ac) {
     a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac))
     return AddUnsigned(RotateLeft(a, s), b)
   }
 
-  function ConvertToWordArray(string) {
+  function ConvertToWordArray (string) {
     var lWordCount
     var lMessageLength = string.length
     var lNumberOfWords_temp1 = lMessageLength + 8
@@ -80,24 +83,23 @@ export default function (string) {
     return lWordArray
   }
 
-  function WordToHex(lValue) {
-    var WordToHexValue = "",
-      WordToHexValue_temp = "",
+  function WordToHex (lValue) {
+    var WordToHexValue = '',
+      WordToHexValue_temp = '',
       lByte, lCount
-    for (lCount = 0;lCount <= 3;lCount++) {
+    for (lCount = 0; lCount <= 3; lCount++) {
       lByte = (lValue >>> (lCount * 8)) & 255
-      WordToHexValue_temp = "0" + lByte.toString(16)
+      WordToHexValue_temp = '0' + lByte.toString(16)
       WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length - 2, 2)
     }
     return WordToHexValue
   }
 
-  function Utf8Encode(string) {
-    string = string.replace(/\r\n/g, "\n")
-    var utftext = ""
+  function Utf8Encode (string) {
+    string = string.replace(/\r\n/g, '\n')
+    var utftext = ''
 
-    for (var n = 0;n < string.length;n++) {
-
+    for (var n = 0; n < string.length; n++) {
       var c = string.charCodeAt(n)
 
       if (c < 128) {
@@ -110,7 +112,6 @@ export default function (string) {
         utftext += String.fromCharCode(((c >> 6) & 63) | 128)
         utftext += String.fromCharCode((c & 63) | 128)
       }
-
     }
 
     return utftext
@@ -144,7 +145,7 @@ export default function (string) {
   c = 0x98BADCFE
   d = 0x10325476
 
-  for (k = 0;k < x.length;k += 16) {
+  for (k = 0; k < x.length; k += 16) {
     AA = a
     BB = b
     CC = c

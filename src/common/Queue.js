@@ -18,7 +18,7 @@ class Queue {
     cur(self.next.bind(self))
   }
   add (...fn) {
-    fn.forEach( function(v, i) {
+    fn.forEach(function (v, i) {
       if (typeof v !== 'function') {
         throw new Error('is Not Function')
       }

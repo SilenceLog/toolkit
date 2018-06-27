@@ -6,7 +6,7 @@ class BinaryTree {
     return newNode.key > node.key
   }
   insert (key) {
-    let newNode = new Node(key);
+    let newNode = new Node(key)
     if (this.root === null) {
       this.root = newNode
     } else {

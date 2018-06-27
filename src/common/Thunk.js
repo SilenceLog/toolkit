@@ -1,6 +1,6 @@
 function run (fn) {
   let gen = fn()
-  function next(err, data) {
+  function next (err, data) {
     var result = gen.next(data)
     if (result.done) return
     console.log('result', result)
@@ -13,17 +13,15 @@ function run (fn) {
   next()
 }
 
-function* g() {
+function * g () {
   yield 2
   yield 3
   return 1
 }
 
-function* t() {
+function * t () {
   yield 't'
   return 't'
 }
 
 run(g)
-
-

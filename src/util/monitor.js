@@ -7,7 +7,7 @@ class Monitor {
     this.info = {
       performance: performance,
       navigator: navigator
-    } 
+    }
     // 登录信息
     this.loginInfo = {
       // 打开时间
@@ -44,32 +44,32 @@ class Monitor {
   initError () {
     let self = this
     window.onerror = function (msg, url, line, col, error) {
-        col = col || (window.event && window.event.errorCharacter) || 0;
-        let monitorError = new MonitorError({
-          url,
-          col,
-          line,
-          time: new Date().getTime()
-        })
-        if (error && error.stack){
-            // 如果浏览器有堆栈信息，直接使用
-            monitorError.msg = error.stack.toString();
-        } else if (arguments.callee) {
-            let ext = []
-            let fn = arguments.callee.caller;
-            let floor = 3
-            while (fn && (--floor>0)) {
-                ext.push(fn.toString());
-                if (fn  === fn.caller) {
-                    break;
-                }
-                fn = fn.caller
-            }
-            ext = ext.join(',')
-            monitorError.msg = error.stack.toString();
+      col = col || (window.event && window.event.errorCharacter) || 0
+      let monitorError = new MonitorError({
+        url,
+        col,
+        line,
+        time: new Date().getTime()
+      })
+      if (error && error.stack) {
+        // 如果浏览器有堆栈信息，直接使用
+        monitorError.msg = error.stack.toString()
+      } else if (arguments.callee) {
+        let ext = []
+        let fn = arguments.callee.caller
+        let floor = 3
+        while (fn && (--floor > 0)) {
+          ext.push(fn.toString())
+          if (fn === fn.caller) {
+            break
+          }
+          fn = fn.caller
         }
-        console.log('MonitorError', monitorError)
-        // (new Image()).src = '/error?' + srt;
+        ext = ext.join(',')
+        monitorError.msg = error.stack.toString()
+      }
+      console.log('MonitorError', monitorError)
+      // (new Image()).src = '/error?' + srt;
     }
   }
   initHttp () {
@@ -115,10 +115,10 @@ class Monitor {
 
 class MonitorError {
   constructor (o) {
-    this.msg = ''  // 错误的具体信息
-    this.url = ''  // 错误所在的url
+    this.msg = '' // 错误的具体信息
+    this.url = '' // 错误所在的url
     this.line = '' // 错误所在的行
-    this.col = ''  // 错误所在的列
+    this.col = '' // 错误所在的列
     this.time = '' // 时间
     Object.assign(this, o)
   }
@@ -126,10 +126,10 @@ class MonitorError {
     let self = this
     let str = ''
     for (let k in self) {
-        if (self[k] === null || self[k] === undefined) {
-            self[k] = 'null'
-        }
-        str += '&'+ k + '=' + self[k].toString()
+      if (self[k] === null || self[k] === undefined) {
+        self[k] = 'null'
+      }
+      str += '&' + k + '=' + self[k].toString()
     }
     return str = str.replace('&', '').replace(/\n|\s/g, '')
   }
@@ -148,15 +148,14 @@ class MonitorXhr {
     let self = this
     let str = ''
     for (let k in self) {
-        if (k === 'xhr') continue;
-        if (self[k] === null || self[k] === undefined) {
-            self[k] = 'null'
-        }
-        str += '&'+ k + '=' + self[k].toString()
+      if (k === 'xhr') continue
+      if (self[k] === null || self[k] === undefined) {
+        self[k] = 'null'
+      }
+      str += '&' + k + '=' + self[k].toString()
     }
     return str = str.replace('&', '').replace(/\n|\s/g, '')
   }
 }
 
 window && (window.Monitor = Monitor)
-

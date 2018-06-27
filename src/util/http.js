@@ -20,10 +20,10 @@ export default class Http {
     let params = null
     let xhr = null
     if (window.XMLHttpRequest) {
-      xhr = new XMLHttpRequest();
+      xhr = new XMLHttpRequest()
     } else {
-      //IE6及其以下版本浏览器
-      xhr = new ActiveXObject('Microsoft.XMLHTTP');
+      // IE6及其以下版本浏览器
+      xhr = new ActiveXObject('Microsoft.XMLHTTP')
     }
     xhr.responseType = options.dataType
     xhr.onreadystatechange = function () {
@@ -43,7 +43,7 @@ export default class Http {
     } else if (options.type === 'POST') {
       params = options.data
       xhr.open('POST', options.url, true)
-      //设置表单提交时的内容类型
+      // 设置表单提交时的内容类型
       // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
       xhr.send(params)
     }

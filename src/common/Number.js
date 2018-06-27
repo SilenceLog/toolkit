@@ -12,9 +12,9 @@ function mul (v1, v2) {
     decimal += (m1.split('.')[1] || '').length
     decimal += (m2.split('.')[1] || '').length
   } catch (e) {
-    console.log(e);
+    console.log(e)
   }
-  return Number(m1.replace('.', '')) * Number(m2.replace('.', '')) / Math.pow(10, decimal);
+  return Number(m1.replace('.', '')) * Number(m2.replace('.', '')) / Math.pow(10, decimal)
 }
 
 /**
@@ -75,7 +75,7 @@ function isEven (v) {
  */
 function checkBoundary (v) {
   if (v > Number.MAX_SAFE_INTEGER || v < Number.MIN_SAFE_INTEGER) {
-    console.warn(`${v} is beyond boundary when transfer to integer, the results may not be accurate`);
+    console.warn(`${v} is beyond boundary when transfer to integer, the results may not be accurate`)
     return true
   }
   return false
@@ -110,7 +110,7 @@ function toFixed (v, decimal) {
  */
 function thousands (v, n) {
   let s = ('' + v).split('.')
-  let d = s.length > 1 ?  '.' + (n > -1 ? s[1].substring(0, n) : s[1]) : ''
+  let d = s.length > 1 ? '.' + (n > -1 ? s[1].substring(0, n) : s[1]) : ''
   return s[0].replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + d
 }
 
@@ -120,7 +120,7 @@ function thousands (v, n) {
  * @param  {Number} precision [精度]
  * @return {[type]}           [description]
  */
-function strip(v, precision = 2) {
+function strip (v, precision = 2) {
   return +parseFloat(v.toPrecision(precision))
 }
 
@@ -142,12 +142,12 @@ function capital (v) {
   s = s || '整'
   v = Math.floor(v)
   for (let i = 0; i < unit[0].length && v > 0; i++) {
-      let p = ''
-      for (let j = 0; j < unit[1].length && v > 0; j++) {
-        p = digit[v % 10] + unit[1][j] + p
-        v = Math.floor(v / 10)
-      }
-      s = p + unit[0][i] + s
+    let p = ''
+    for (let j = 0; j < unit[1].length && v > 0; j++) {
+      p = digit[v % 10] + unit[1][j] + p
+      v = Math.floor(v / 10)
+    }
+    s = p + unit[0][i] + s
   }
   return s.replace(/(零.)*零元/, '元').replace(/(零.)+/g, '零').replace(/^整$/, '零元整')
 }
@@ -158,12 +158,12 @@ function capital (v) {
  * @param  {Number} max [最大值]
  * @return {Number}    [指定范围内的整数]
  */
-function randomNumber (min=0, max=255) {
-  if (arguments.length===1) {
+function randomNumber (min = 0, max = 255) {
+  if (arguments.length === 1) {
     return Math.round(Math.random() * min)
   } else {
     return Math.round(min + Math.random() * (max - min))
-  }  
+  }
 }
 
 // TODO 字符串二进制位运算与或

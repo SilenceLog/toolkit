@@ -123,7 +123,7 @@ function isPromise (v) {
  * @return {Boolean}   [description]
  */
 function isMongooseQuery (v) {
-  return v !== null && typeof v === 'object' && typeof v.exec === 'function';
+  return v !== null && typeof v === 'object' && typeof v.exec === 'function'
 }
 
 /**
@@ -141,10 +141,10 @@ function isObjectLike (v) {
  * @return {Boolean}     [description]
  */
 function isJSON (str) {
-  if (typeof str == 'string') {
+  if (typeof str === 'string') {
     try {
       const obj = JSON.parse(str)
-      return typeof obj == 'object' && obj
+      return typeof obj === 'object' && obj
     } catch (e) {
       console.log('error:' + str + '!' + e)
       return false

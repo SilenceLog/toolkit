@@ -1,22 +1,22 @@
 /**
  * 监听滚动条
  */
-let scrollSections = [];
+let scrollSections = []
 
-const bodyScrollEl = {};
+const bodyScrollEl = {}
 
 // For ff, ie
 Object.defineProperty(bodyScrollEl, 'scrollTop', {
-  get() {
-    return document.body.scrollTop || document.documentElement.scrollTop;
+  get () {
+    return document.body.scrollTop || document.documentElement.scrollTop
   },
-  set(val) {
+  set (val) {
     document.body.scrollTop = val
     document.documentElement.scrollTop = val
   }
 })
 
-function init(el) {
+function init (el) {
   scrollSections = []
   const sections = el.children
   if (sections[0] && sections[0].offsetParent !== el) {
@@ -31,14 +31,14 @@ function init(el) {
   }
 }
 
-const scrollSpyContext = '@@scrollSpyContext';
+const scrollSpyContext = '@@scrollSpyContext'
 
-export default function install(Vue) {
+export default function install (Vue) {
   Vue.directive('scroll', {
-    bind: function(el, binding, vnode) {
-      function onScroll() {
+    bind: function (el, binding, vnode) {
+      function onScroll () {
         const { scrollEl, expression } = el[scrollSpyContext]
-        const pos = scrollEl.scrollTop;
+        const pos = scrollEl.scrollTop
         let i = 0
         while (pos >= scrollSections[i]) {
           i++
@@ -46,7 +46,7 @@ export default function install(Vue) {
         vnode.context.$data[expression] = i ? i - 1 : 0
       }
 
-      function scrollTo(index) {
+      function scrollTo (index) {
         const { scrollEl } = el[scrollSpyContext]
         const current = scrollEl.scrollTop
         const target = scrollSections[index]
@@ -68,15 +68,15 @@ export default function install(Vue) {
         scrollEl: el
       }
     },
-    inserted: function(el) {
+    inserted: function (el) {
       init(el)
       const { eventEl, onScroll } = el[scrollSpyContext]
       eventEl.addEventListener('scroll', onScroll)
     },
-    componentUpdated: function(el) {
-      init(el);
+    componentUpdated: function (el) {
+      init(el)
     },
-    unbind: function(el) {
+    unbind: function (el) {
       const { eventEl, onScroll } = el[scrollSpyContext]
       eventEl.removeEventListener('scroll', onScroll)
     }
