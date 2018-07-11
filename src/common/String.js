@@ -8,6 +8,31 @@ function capitalizeEveryWord (str) {
 }
 
 /**
+ * [snake2Camel 蛇形转驼峰]
+ * @param  {String} str      [description]
+ * @param  {Boolean} capLower [description]
+ * @return {String}          [description]
+ */
+function snake2Camel (str, capLower) {
+  let s = str.replace(/[-_](\w)/g, function (x) {
+    return x.slice(1).toUpperCase()
+  })
+  s = s.replace(/^\w/, function (x) {
+    return capLower ? x.toLowerCase() : x.toUpperCase()
+  })
+  return s
+}
+
+/**
+ * [camel2Snake 驼峰转蛇形]
+ * @param  {String} str [description]
+ * @return {String}     [description]
+ */
+function camel2Snake (str) {
+  return str.replace(/([A-Z])/g, '-$1').toLowerCase()
+}
+
+/**
  * [randomNumber 生成随机字符串]
  * @param  {Number} count [description]
  * @return {String}       [description]
@@ -94,6 +119,8 @@ function isEmail (str) {
 
 export {
   capitalizeEveryWord,
+  snake2Camel,
+  camel2Snake,
   randomNumber,
   trim,
   getExtension,

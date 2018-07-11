@@ -1,3 +1,17 @@
+/**
+ * [formatParams 对象转化成url参数字符串格式]
+ * @param  {[type]} o [description]
+ * @param  {[type]} j [description]
+ * @return {[type]}      [description]
+ */
+function formatParams (o, j = '&') {
+  let arr = []
+  for (let key in o) {
+    if (!o[key] && o[key] !== 0) continue
+    arr.push(encodeURIComponent(key) + '=' + encodeURIComponent(JSON.stringify(o[key])))
+  }
+  return arr.join(j)
+}
 
 /**
  * [getQueryString 获取参数值]
@@ -28,7 +42,9 @@ function getQueryString (name, param) {
   return null
 }
 
-getQueryString('action', {
-  url: 'http://buytest.wokelink.com/sign-up.html?sharer_id=5ac3500808bce2523247a59d&catalog_id=5ab8b2e007eeb21cfe5532f8&last_cm_user=593769579981d7cac34888d5&action=collect#',
-  reg: '[^#]*'
-})
+// getQueryString('action', {
+//   url: 'http://buytest.wokelink.com/sign-up.html?sharer_id=5ac3500808bce2523247a59d&catalog_id=5ab8b2e007eeb21cfe5532f8&last_cm_user=593769579981d7cac34888d5&action=collect#',
+//   reg: '[^#]*'
+// })
+
+export { formatParams, getQueryString }
