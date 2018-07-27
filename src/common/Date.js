@@ -4,7 +4,7 @@
  * @return {[type]}   [description]
  */
 function newDate (s) {
-  return new Date(s.replace(/\s/, 'T'))._format(fmt)
+  return new Date(s.replace(/\s/, 'T'))
 }
 
 /**

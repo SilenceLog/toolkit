@@ -10,16 +10,16 @@
 <body>
     <div id="allmap"></div>
     <script>
-    var a = new DStorage({
-        driver: DStorage.LOCALSTORAGE
+    var a = new LStorage({
+        driver: LStorage.LOCALSTORAGE
     })
-    var c = new DStorage({
-        driver: DStorage.SESSIONSTORAGE
+    var c = new LStorage({
+        driver: LStorage.SESSIONSTORAGE
     })
     document.cookie = 'name=1'
     document.cookie = 'name2=2'
-    var b = new DStorage({
-        driver: DStorage.COOKIE
+    var b = new LStorage({
+        driver: LStorage.COOKIE
     })
     setTimeout(function () {
         a.setItem('name', '1')

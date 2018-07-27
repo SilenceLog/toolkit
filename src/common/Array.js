@@ -76,7 +76,8 @@ function object (a, fn) {
   if (typeof fn === 'string') {
     let k = fn
     fn = function (o, v, i) {
-      return o[v[k]] = v
+      o[v[k]] = v
+      return v
     }
   }
   if (typeof fn === 'function') {
@@ -141,7 +142,7 @@ function findIndex (a, fn) {
     }
   } else {
     for (let i = 0; i < len; i++) {
-      if (a[i] === n) return i
+      if (a[i] === fn) return i
     }
   }
   return -1
@@ -189,4 +190,23 @@ function toArray (list, start) {
   return arr
 }
 
-export { clone, unique, upset, randomOne, reduce, object, selected, onoff, findIndex, indexOf, find, toArray }
+function mForEach() {
+  let fns = []
+  if (arguments.length > 0 && typeof arguments[0] === 'function') {
+    for (let i in arguments) {
+      if (typeof arguments[i] === 'function') {
+        let fn = arguments[i]
+        fns.push(fn)
+      }
+    }
+    let lastArg = arguments[arguments.length - 1]
+    if (typeof lastArg === 'object') {
+      let option = Object.assign({}, lastArg)
+      for (let [key, value] of entries(option)) {
+        
+      }
+    }
+  }
+}
+
+export default { clone, unique, upset, randomOne, reduce, object, selected, onoff, findIndex, indexOf, find, toArray }

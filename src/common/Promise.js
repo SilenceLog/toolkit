@@ -1,35 +1,35 @@
 import { isArray } from './Type.js'
-/**
- * [noop description]
- * @return {[type]} [description]
- */
-function noop () {}
+// /**
+//  * [noop description]
+//  * @return {[type]} [description]
+//  */
+// function noop () {}
 
-class Promise {
-  /**
-   * [constructor 构造方法]
-   * @param  {Functin} resolver [description]
-   */
-  constructor (resolver) {
-    this._state = Promise.PENDING
-    this._result = undefined
-    this._subscribers = []
-    if (noop !== resolver) {
-      typeof resolver !== 'function' && needsResolver();
-      this instanceof Promise ? initializePromise(this, resolver) : needsNew();
-    }
-  }
-}
-// 进行中
-Promise.PENDING = 0
-// 已成功
-Promise.FULFILLED = 1
-// 已失败
-Promise.REJECTED = 2
+// class Promise {
+//   /**
+//    * [constructor 构造方法]
+//    * @param  {Functin} resolver [description]
+//    */
+//   constructor (resolver) {
+//     this._state = Promise.PENDING
+//     this._result = undefined
+//     this._subscribers = []
+//     if (noop !== resolver) {
+//       typeof resolver !== 'function' && needsResolver();
+//       this instanceof Promise ? initializePromise(this, resolver) : needsNew();
+//     }
+//   }
+// }
+// // 进行中
+// Promise.PENDING = 0
+// // 已成功
+// Promise.FULFILLED = 1
+// // 已失败
+// Promise.REJECTED = 2
 
 
 
-export Promise
+// export Promise
 
 
 

@@ -21,7 +21,7 @@ class Storage {
         db = window.sessionStorage || (window.UserDataStorage && new UserDataStorage()) || new cookieStorage()
         break
       case Storage.COOKIE:
-        db = document.cookie || window.cookie
+        db = window.document.cookie || window.cookie
         break
       default:
         // statements_def
@@ -36,7 +36,7 @@ class Storage {
       case Storage.SESSIONSTORAGE:
         break
       case Storage.COOKIE:
-        (document.cookie && (document.cookie = v)) || (window.cookie && (window.cookie = v))
+        (window.document.cookie && (window.document.cookie = v)) || (window.cookie && (window.cookie = v))
         break
       default:
         // statements_def
@@ -154,9 +154,9 @@ Storage.SESSIONSTORAGE = 'sessionStorage'
 Storage.COOKIE = 'cookie'
 
 function getCookieKeys (c) {
-  return c.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, '').split(/\s*(?:\=[^;]*)?;\s*/)
+  return c.replace(/((?:^|\s*;)[^=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, '').split(/\s*(?:\=[^;]*)?;\s*/)
 }
 
-window && (window.DStorage = Storage)
+window && (window.LStorage = Storage)
 
 export default Storage
