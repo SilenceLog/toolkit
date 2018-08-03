@@ -7,7 +7,7 @@
 function diffValue (n, o) {
   let obj = {}
   for (let key in n) {
-    if (!o[key]) {
+    if (o[key] === undefined) {
       obj[key] = n[key]
       continue
     }
