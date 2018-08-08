@@ -108,6 +108,7 @@ function bitOperation (v1, v2, operators) {
 function isEmail (str) {
   if (!str) return false
   if (str.length > 254) return false
+  /* eslint-disable no-useless-escape */
   const reg = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-?\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/
   if (!reg.test(str)) return false
   const parts = str.split('@')

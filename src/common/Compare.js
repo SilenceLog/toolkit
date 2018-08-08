@@ -1,10 +1,11 @@
 /**
  * [diffValue 非递归差异对比]
- * @param  {Object} n [description]
- * @param  {Object} o [description]
+ * @param  {Object} n [对比值]
+ * @param  {Object} o [参照值]
+ * @param  {Number} level [递归层级]
  * @return {Object}   [description]
  */
-function diffValue (n, o) {
+function diffValue (n, o, level) {
   let obj = {}
   for (let key in n) {
     if (o[key] === undefined) {
@@ -37,7 +38,8 @@ function diffValue (n, o) {
  * @return {[type]}    [description]
  */
 function eq (n, o) {
+  /* eslint-disable no-self-compare */
   return n === o || (n !== n && o !== o)
 }
 
-export {diffValue, eq}
+export default {diffValue, eq}
