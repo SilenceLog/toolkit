@@ -49,6 +49,7 @@ function randomNumber (count) {
  */
 function trim (str, type = 1) {
   switch (type) {
+    /* eslint-disable no-useless-escape */
     case 1:return str.replace(/\s+/g, '')
     case 2:return str.replace(/(^\s*)|(\s*$)/g, '')
     case 3:return str.replace(/(^\s*)/g, '')
@@ -63,6 +64,7 @@ function trim (str, type = 1) {
  * @return {String}     [description]
  */
 function getExtension (str) {
+  /* eslint-disable no-useless-escape */
   let v = str.match(/\.[^\.]*$/g)
   return v && v.length ? v[0] : ''
 }
@@ -108,6 +110,7 @@ function bitOperation (v1, v2, operators) {
 function isEmail (str) {
   if (!str) return false
   if (str.length > 254) return false
+  /* eslint-disable no-useless-escape */
   const reg = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-?\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/
   if (!reg.test(str)) return false
   const parts = str.split('@')
