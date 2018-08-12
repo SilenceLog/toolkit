@@ -31,4 +31,38 @@ function joinKey (o, j = ',') {
   return arr.join(j)
 }
 
-export { }
+/**
+ * [clearEmpty 清除null、undefined值]
+ * @param  {[type]} obj [description]
+ * @return {[type]}     [description]
+ */
+function clearEmpty (obj) {
+  if (!obj && typeof obj !== 'object') return
+  for (let key in obj) {
+    if (obj[key] === null || obj[key] === undefined) {
+      delete obj[key]
+    }
+  }
+  return obj
+}
+
+/**
+ * [toString 对象转String]
+ * @param  {[type]}   obj [description]
+ * @param  {Function} fn  [description]
+ * @return {[type]}       [description]
+ */
+function toString (obj, fn) {
+  if (!obj && typeof obj !== 'object') return
+  let arr = []
+  for (let key in obj) {
+    if (fn && typeof fn === 'function') {
+      arr.push(fn.call(this, key, obj[key], obj))
+    } else {
+      arr.push(`${key}:${obj[key]}`)
+    }
+  }
+  return arr.length ? arr.join(';') : ''
+}
+
+export {clearEmpty, toString}

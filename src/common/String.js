@@ -49,6 +49,7 @@ function randomNumber (count) {
  */
 function trim (str, type = 1) {
   switch (type) {
+    /* eslint-disable no-useless-escape */
     case 1:return str.replace(/\s+/g, '')
     case 2:return str.replace(/(^\s*)|(\s*$)/g, '')
     case 3:return str.replace(/(^\s*)/g, '')
@@ -63,6 +64,7 @@ function trim (str, type = 1) {
  * @return {String}     [description]
  */
 function getExtension (str) {
+  /* eslint-disable no-useless-escape */
   let v = str.match(/\.[^\.]*$/g)
   return v && v.length ? v[0] : ''
 }
